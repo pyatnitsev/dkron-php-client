@@ -31,16 +31,16 @@ $client = new Updevru\Dkron\ApiClient(
     new Nyholm\Psr7\Factory\Psr17Factory()
 );
 
-$api = new \Updevru\Dkron\Api($client, new \Updevru\Dkron\Serializer\JMSSerializer());
+$api = new Updevru\Dkron\Api($client, new Updevru\Dkron\Serializer\JMSSerializer());
 
 $status = $api->getStatus();
 logger('Dkron on host %s connected!', $params[0]);
 logger('Agent name:%s version:%s', $status->getAgent()['name'], $status->getAgent()['version']);
 
-$newJob = new \Updevru\Dkron\Dto\JobDto();
+$newJob = new Updevru\Dkron\Dto\JobDto();
 $newJob->setName('test_job');
 $newJob->setSchedule('*/2 * * * * *');
-$newJob->setConcurrency(\Updevru\Dkron\Dto\JobDto::CONCURRENCY_FORBID);
+$newJob->setConcurrency(Updevru\Dkron\Dto\JobDto::CONCURRENCY_FORBID);
 $newJob->setExecutor('shell');
 $newJob->setExecutorConfig(['command' => 'echo Hello']);
 
